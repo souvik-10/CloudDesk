@@ -1,7 +1,11 @@
 const express = require('express');
 const ticketController = require('../controllers/ticketController');
+const { verifyToken } = require('../middleware/authMiddleware');
 
 const router = express.Router();
+
+
+router.use(verifyToken);
 
 router.post('/', ticketController.createTicket);
 router.get('/', ticketController.getTickets);
