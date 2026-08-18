@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require('express');
 const ticketRoutes = require('./routes/ticketRoutes'); // <-- NEW
 

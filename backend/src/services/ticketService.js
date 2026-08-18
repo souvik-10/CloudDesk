@@ -1,7 +1,6 @@
-// Temporary in-memory database
-let tickets = [];
+const ticketRepository = require('../repositories/ticketRepository');
 
-const createTicket = (ticketData) => {
+const createTicket = async (ticketData) => {
     const newTicket = {
         ticketId: `TICK-${Date.now()}`,
         title: ticketData.title,
@@ -10,35 +9,22 @@ const createTicket = (ticketData) => {
         priority: ticketData.priority || 'MEDIUM',
         createdAt: new Date().toISOString()
     };
-    tickets.push(newTicket);
+
+    // Save to AWS DynamoDB!
+    await ticketRepository.saveTicket(newTicket);
     return newTicket;
 };
 
-const getAllTickets = () => {
-    return tickets;
+const getAllTickets = async () => {
+    return await ticketRepository.fetchAllTickets();
 };
 
-// --- NEW FUNCTIONS BELOW ---
-
-const getTicketById = (ticketId) => {
-    // Find a single ticket in the array
-    return tickets.find(t => t.ticketId === ticketId);
+const getTicketById = async (ticketId) => {
+    return await ticketRepository.fetchTicketById(ticketId);
 };
 
-const updateTicket = (ticketId, updateData) => {
-    const ticketIndex = tickets.findIndex(t => t.ticketId === ticketId);
-    if (ticketIndex === -1) return null; // Ticket not found
-
-    // Update only allowed fields (status, priority)
-    const updatedTicket = {
-        ...tickets[ticketIndex],
-        status: updateData.status || tickets[ticketIndex].status,
-        priority: updateData.priority || tickets[ticketIndex].priority,
-        updatedAt: new Date().toISOString()
-    };
-
-    tickets[ticketIndex] = updatedTicket;
-    return updatedTicket;
+const updateTicket = async (ticketId, updateData) => {
+    return await ticketRepository.updateTicketStatus(ticketId, updateData);
 };
 
 module.exports = {

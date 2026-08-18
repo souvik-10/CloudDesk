@@ -11,6 +11,9 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.1112.0",
+    "@aws-sdk/lib-dynamodb": "^3.1112.0",
+    "dotenv": "^17.4.2",
     "express": "^5.2.1"
   }
 }
