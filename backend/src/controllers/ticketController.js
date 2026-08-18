@@ -1,3 +1,4 @@
+const s3Service = require('../services/s3Service');
 const ticketService = require('../services/ticketService');
 
 const createTicket = async (req, res) => {
@@ -58,9 +59,26 @@ const updateTicket = async (req, res) => {
     }
 };
 
+
+const getUploadUrl = async (req, res) => {
+    try {
+        const { fileName, fileType } = req.query;
+
+        if (!fileName || !fileType) {
+            return res.status(400).json({ success: false, message: 'fileName and fileType query parameters are required' });
+        }
+        const urlData = await s3Service.generateUploadUrl(fileName, fileType);
+        res.status(200).json({ success: true, data: urlData });
+    } catch (error) {
+        console.log("S3 ERROR:", error);
+        res.status(500).json({ success: false, message: 'Could not generate upload URL' });
+    }
+};
+
 module.exports = {
     createTicket,
     getTickets,
     getTicketById,
-    updateTicket
+    updateTicket,
+    getUploadUrl
 };
