@@ -1,31 +1,29 @@
-import { useState } from 'react'
-import Login from './pages/Login'
-import Dashboard from './pages/Dashboard'
+import { useState } from 'react';
+import Login from './pages/Login';
+import Dashboard from './pages/Dashboard';
+import CreateTicket from './pages/CreateTicket'; // <-- NEW
 
 function App() {
-  const [currentRoute, setCurrentRoute] = useState('login');
+  const [currentPage, setCurrentPage] = useState('login');
 
   const renderPage = () => {
-    switch (currentRoute) {
+    switch (currentPage) {
       case 'login':
-        return <Login onLogin={setCurrentRoute} />;
+        return <Login onLogin={setCurrentPage} />;
       case 'dashboard':
-        return <Dashboard onLogout={setCurrentRoute} />;
+        return <Dashboard onLogout={setCurrentPage} onNavigate={setCurrentPage} />; // <-- Pass onNavigate
+      case 'create-ticket':
+        return <CreateTicket onNavigate={setCurrentPage} />; // <-- NEW
       default:
-        return <h1>404 Not Found</h1>;
+        return <Login onLogin={setCurrentPage} />;
     }
   };
 
   return (
-    <div>
-      <nav style={{ padding: '1rem 2rem', backgroundColor: 'var(--card-bg)', borderBottom: '1px solid var(--border)' }}>
-        <h2 style={{ color: 'var(--primary)' }}>CloudDesk</h2>
-      </nav>
-      <main>
-        {renderPage()}
-      </main>
+    <div style={{ minHeight: '100vh', backgroundColor: 'var(--background)' }}>
+      {renderPage()}
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

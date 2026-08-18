@@ -7,6 +7,9 @@ const createTicket = async (ticketData) => {
         description: ticketData.description,
         status: 'OPEN',
         priority: ticketData.priority || 'MEDIUM',
+        attachmentUrl: ticketData.attachmentUrl || null,
+
+
         createdAt: new Date().toISOString()
     };
 
@@ -14,6 +17,7 @@ const createTicket = async (ticketData) => {
     await ticketRepository.saveTicket(newTicket);
     return newTicket;
 };
+
 
 const getAllTickets = async () => {
     return await ticketRepository.fetchAllTickets();
