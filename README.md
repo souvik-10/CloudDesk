@@ -8,7 +8,7 @@
 ![S3](https://img.shields.io/badge/Amazon%20S3-569A31.svg?logo=Amazon-S3&logoColor=white)
 
 ## 🌐 Live Demo & Deployment
-- **Frontend (AWS Amplify):** *(Paste your live AWS Amplify URL here)*
+- **Frontend (AWS Amplify):** [https://main.d2507pncrkso5o.amplifyapp.com/](https://main.d2507pncrkso5o.amplifyapp.com/)
 - **Backend (API Gateway):** `https://xc94sskd0j.execute-api.eu-north-1.amazonaws.com/api`
 
 ---
