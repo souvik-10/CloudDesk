@@ -11,6 +11,11 @@
 - **Frontend (AWS Amplify):** [https://main.d2507pncrkso5o.amplifyapp.com/](https://main.d2507pncrkso5o.amplifyapp.com/)
 - **Backend (API Gateway):** `https://xc94sskd0j.execute-api.eu-north-1.amazonaws.com/api`
 
+### 🔑 Demo Login Credentials
+To test the live application, please use the following credentials:
+- **Username:** `admin`
+- **Password:** `supersecretpassword`
+
 ---
 
 ## 📖 Project Overview
