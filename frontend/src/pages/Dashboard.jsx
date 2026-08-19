@@ -85,11 +85,11 @@ export default function Dashboard({ onLogout, onNavigate }) {
                                 )}
                             </div>
                             <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}>
-                                <span className={`badge ${ticket.status.toLowerCase()}`}>
-                                    {ticket.status}
+                                <span className={`badge ${ticket.status?.toLowerCase() || 'open'}`}>
+                                    {ticket.status || 'OPEN'}
                                 </span>
-                                <span className={`badge ${ticket.priority.toLowerCase()}`}>
-                                    {ticket.priority}
+                                <span className={`badge ${ticket.priority?.toLowerCase() || 'medium'}`}>
+                                    {ticket.priority || 'MEDIUM'}
                                 </span>
                             </div>
                         </div>
